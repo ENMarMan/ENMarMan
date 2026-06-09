@@ -368,6 +368,37 @@
     body { padding: 28px 0 48px; background: #d8dfe8; }
     .page { box-shadow: 0 8px 48px rgba(28,33,40,0.18), 0 2px 8px rgba(28,33,40,0.08); }
   }
+
+/* >>>>>>>>>> INICIO INSERCIÓN BOTÓN IMPRIMIR <<<<<<<<<< */
+  #btn-print {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.65rem 1.3rem;
+    background: #3a8fb5;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: "DM Sans", sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(58,143,181,0.35);
+    transition: all 0.2s;
+  }
+  #btn-print:hover {
+    background: #2f7a9e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(58,143,181,0.4);
+  }
+  @media print {
+    #btn-print { display: none; }
+  }
+  /* >>>>>>>>>> FIN INSERCIÓN BOTÓN IMPRIMIR <<<<<<<<<< */
 </style>
 </head>
 <body>
