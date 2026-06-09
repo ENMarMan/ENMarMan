@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elías Naum Marchevsky Mansur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c2128;
+    --paper: #f8f9fb;
+    --accent: #3a8fb5;
+    --accent2: #5aab7a;
+    --accent-light: #d0eaf5;
+    --accent2-light: #d4f0e0;
+    --muted: #6b7685;
+    --rule: #dde2ea;
+    --sidebar-bg: #eef1f6;
+    --tag-bg: #e4ecf5;
+    --tag2-bg: #e0f2ea;
+    --white: #ffffff;
+    --max: 860px;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(248,249,251,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-name {
+    font-family: "Playfair Display", serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero-continua {
+    margin-top: 1.6rem;
+    font-size: 0.93rem;
+    color: var(--muted);
+    font-style: italic;
+    letter-spacing: 0.01em;
+  }
+
+  /* ─── HERO ────────────────────────────────────────── */
+  #inicio {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 2rem 60px;
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+  #inicio::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(58,143,181,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #inicio::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(90,171,122,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+  .hero-name {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .accent-bar {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 1.8rem;
+  }
+  .accent-bar span {
+    height: 3px;
+    border-radius: 2px;
+    display: block;
+  }
+  .accent-bar .b1 { width: 40px; background: var(--accent); }
+  .accent-bar .b2 { width: 16px; background: var(--accent2); }
+  .accent-bar .b3 { width: 8px; background: var(--accent); opacity: 0.35; }
+  .hero-lead {
+    font-size: 1.13rem;
+    line-height: 1.75;
+    color: #3a4452;
+    max-width: 540px;
+    margin-bottom: 2.2rem;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: #2f7a9e;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(58,143,181,0.25);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+  }
+  .btn-ghost:hover {
+    background: var(--accent-light);
+    transform: translateY(-1px);
+  }
+  .btn-green {
+    background: transparent;
+    color: var(--accent2);
+    border: 1.5px solid var(--accent2);
+  }
+  .btn-green:hover {
+    background: var(--accent2-light);
+    transform: translateY(-1px);
+  }
+
+  /* Foto */
+  .hero-photo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .photo-frame {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--accent);
+    box-shadow: 0 8px 32px rgba(58,143,181,0.18), 0 2px 8px rgba(0,0,0,0.06);
+    background: var(--sidebar-bg);
+    position: relative;
+  }
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  /* Placeholder si no hay foto */
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent-light), var(--accent2-light));
+  }
+  .photo-placeholder span {
+    font-family: "Playfair Display", serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+
+  /* ─── SECCIONES GENERALES ─────────────────────────── */
+  section {
+    padding: 64px 2rem;
+  }
+  section.bg-white {
+    background: var(--white);
+  }
+  .section-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+  .section-label {
+    font-family: "DM Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.7rem, 3.5vw, 2.3rem);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2.2rem;
+    line-height: 1.2;
+  }
+
+  /* ─── SOBRE MÍ ────────────────────────────────────── */
+  #sobre-mi .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+  .prose {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #3a4452;
+  }
+  .prose p + p { margin-top: 1.1rem; }
+  .interests-block {
+    background: var(--sidebar-bg);
+    border-radius: 10px;
+    padding: 1.8rem;
+    border-left: 3px solid var(--accent2);
+  }
+  .interests-title {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1.1rem;
+  }
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .tag {
+    font-size: 12px;
+    padding: 4px 11px;
+    border-radius: 4px;
+    background: var(--tag-bg);
+    color: #2c5f7a;
+    font-weight: 500;
+  }
+  .tag.green {
+    background: var(--tag2-bg);
+    color: #2a6645;
+  }
+  .tag.neutral {
+    background: #ebebf0;
+    color: #4a5260;
+  }
+
+  /* ─── TRAYECTORIA ─────────────────────────────────── */
+  #trayectoria {
+    background: var(--paper);
+  }
+  .trayectoria-intro {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #3a4452;
+    max-width: 660px;
+    margin-bottom: 3.5rem;
+  }
+  .trayectoria-intro p + p { margin-top: 1rem; }
+
+  .etapa {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3.5rem;
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .etapa:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .etapa-meta {
+    position: sticky;
+    top: 72px;
+  }
+  .etapa-periodo {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .etapa-org {
+    font-family: "Playfair Display", serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .etapa-rol {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  .etapa-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 1.4rem;
+  }
+  .etapa-dot.green { background: var(--accent2); }
+  .etapa-content .prose p + p { margin-top: 1rem; }
+  .etapa-content .prose { font-size: 0.98rem; }
+
+  /* ─── POR QUÉ PM ──────────────────────────────────── */
+  #por-que {
+    /* background manejado por .bg-white */
+  }
+  .porque-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 0.5rem;
+  }
+  .porque-card {
+    background: var(--paper);
+    border-radius: 10px;
+    padding: 1.8rem;
+    border-top: 3px solid var(--accent);
+  }
+  .porque-card.green-top { border-top-color: var(--accent2); }
+  .porque-card-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+  .porque-card p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #3a4452;
+  }
+  .porque-lead {
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: #3a4452;
+    margin-bottom: 2rem;
+    max-width: 700px;
+  }
+  .porque-lead p + p { margin-top: 1rem; }
+
+  /* ─── QUÉ BUSCO ───────────────────────────────────── */
+  #que-busco {
+    background: var(--paper);
+  }
+  .busco-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .busco-prose { font-size: 1rem; line-height: 1.8; color: #3a4452; }
+  .busco-prose p + p { margin-top: 1.1rem; }
+  .busco-aside {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 2rem;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+  }
+  .busco-aside-title {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+  .busco-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .busco-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .busco-item span {
+    font-size: 13.5px;
+    color: #3a4452;
+    line-height: 1.5;
+  }
+
+  /* ─── AVISO DE TRANSICIÓN ─────────────────────────── */
+  .aviso-transicion {
+    margin-top: 2rem;
+    background: var(--accent-light);
+    border-radius: 8px;
+    padding: 1.4rem 1.6rem;
+    border-left: 3px solid var(--accent);
+  }
+  .aviso-transicion-title {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .aviso-transicion p {
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: #2c4a5e;
+  }
+
+  /* ─── CONTACTO ────────────────────────────────────── */
+  #contacto {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 2rem;
+    border-top: 3px solid var(--accent);
+  }
+  #contacto .section-label { color: var(--accent); }
+  #contacto .section-title { color: var(--paper); margin-bottom: 1.2rem; }
+  .contacto-lead {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #a8b4c0;
+    max-width: 500px;
+    margin-bottom: 2.8rem;
+  }
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2.8rem;
+  }
+  .contacto-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 1.2rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+    text-decoration: none;
+    color: var(--paper);
+    transition: all 0.2s;
+  }
+  .contacto-item:hover {
+    background: rgba(58,143,181,0.15);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .contacto-item svg {
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+  .contacto-item-label {
+    font-size: 10px;
+    font-family: "DM Mono", monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #6b7685;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .contacto-item-val {
+    font-size: 13.5px;
+    color: var(--paper);
+    font-weight: 400;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+  }
+  .downloads {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.7rem 1.4rem;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    background: transparent;
+  }
+  .btn-download:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(58,143,181,0.3);
+  }
+  .btn-download.green {
+    border-color: var(--accent2);
+    color: var(--accent2);
+  }
+  .btn-download.green:hover {
+    background: var(--accent2);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(90,171,122,0.3);
+  }
+
+  /* ─── FOOTER ──────────────────────────────────────── */
+  footer {
+    background: #131820;
+    color: #4a5568;
+    text-align: center;
+    padding: 1.4rem 2rem;
+    font-family: "DM Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── FADE-IN ANIMACIONES ─────────────────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 720px) {
+    #inicio { padding-top: 72px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-photo-wrap { order: -1; }
+    .photo-frame { width: 130px; height: 130px; }
+    #sobre-mi .cols { grid-template-columns: 1fr; gap: 2rem; }
+    .etapa { grid-template-columns: 1fr; gap: 1rem; }
+    .etapa-meta { position: static; }
+    .porque-grid { grid-template-columns: 1fr; }
+    .busco-content { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+    #contacto .section-title { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-name">Elías Naum Marchevsky Mansur</span>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#trayectoria">Trayectoria</a></li>
+    <li><a href="#por-que">Por qué PM</a></li>
+    <li><a href="#que-busco">Qué busco</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- INICIO / HERO -->
+<section id="inicio">
+  <div class="hero-inner">
+    <div class="hero-text fade-in">
+      <div class="hero-eyebrow">Gestión · Project Management · Consultoría</div>
+      <h1 class="hero-name">Elías Naum<br><em>Marchevsky Mansur</em></h1>
+      <div class="accent-bar">
+        <span class="b1"></span>
+        <span class="b2"></span>
+        <span class="b3"></span>
+      </div>
+      <p class="hero-lead">
+        Trabajo en gestión y administración desde hace más de cinco años, actualmente como Gerente de Sucursal en FUESMEN —Fundación Escuela de Medicina Nuclear—, San Rafael. Estoy buscando cambiar de trabajo hacia roles de project management o consultoría, preferentemente en modalidad remota o híbrida.
+      </p>
+      <div class="hero-ctas">
+        <a href="CV_Elias_Marchevsky_v5.html" download class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Currículum
+        </a>
+        <a href="CartaPresentacion_Elias_Marchevsky2.html" download class="btn btn-green">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Carta de presentación
+        </a>
+        <a href="#contacto" class="btn btn-ghost">Contacto</a>
+      </div>
+      <p class="hero-continua">Si querés saber más sobre mí, seguí leyendo ↓</p>
+    </div>
+    <div class="hero-photo-wrap fade-in" style="transition-delay:0.15s">
+      <div class="photo-frame">
+        <!-- Reemplazá "foto.jpg" por el nombre real de tu imagen -->
+        <img src="foto.jpg" alt="Elías Marchevsky"
+             onerror="this.style.display='none'; this.parentNode.querySelector('.photo-placeholder').style.display='flex'">
+        <div class="photo-placeholder" style="display:none;">
+          <span>EM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi" class="bg-white">
+  <div class="section-inner">
+    <div class="section-label">El contexto</div>
+    <h2 class="section-title">Sobre mí</h2>
+    <div class="cols">
+      <div class="prose fade-in">
+        <p>
+          Tengo 31 años, nací y crecí en Godoy Cruz, Mendoza, Argentina. Estoy en pareja hace más de siete años y junto a mi pareja soy padre por integración de nuestro hijo de diez. En 2022 nos mudamos a San Rafael, Mendoza cuando surgió la oportunidad de hacerme cargo de la gerencia de la sede de FUESMEN San Rafael.
+        </p>
+        <p>
+          Trabajo desde los 15 años, lo desarrollaré más adelante. No lo menciono como mérito especial, sino como contexto: formo parte del mundo laboral desde temprana edad.
+        </p>
+        <p>
+          También en simultáneo estudié dos carreras universitarias: primero Ingeniería Agronómica, la cual dejé inconclusa, y luego Licenciatura en Administración, de la cual tengo 31 materias aprobadas de 36 en la UNCuyo. La puse en pausa priorizando el trabajo y la familia; terminarla es uno de mis objetivos más concretos para los próximos años.
+        </p>
+        <p>
+          Por otro lado, soy una persona bastante curiosa, proactiva y responsable. Me interesan la inteligencia artificial, la robótica, la historia, la sociología, la astronomía, la física, la química, entre otras cosas. Leo ciencia ficción y fantasía —Tolkien, Rothfuss y Asimov son de mis autores favoritos. Me gustan los deportes en general y en particular juego al básquet y al fútbol cuando el tiempo lo permite.
+        </p>
+      </div>
+      <div class="fade-in" style="transition-delay:0.1s">
+        <div class="interests-block">
+          <div class="interests-title">Intereses &amp; perfil</div>
+          <div class="tag-cloud">
+            <span class="tag">Gestión organizacional</span>
+            <span class="tag green">Inteligencia Artificial</span>
+            <span class="tag green">Robótica</span>
+            <span class="tag">Ciencia ficción</span>
+            <span class="tag">Tolkien · Rothfuss · Asimov</span>
+            <span class="tag neutral">Fútbol · Básquet</span>
+            <span class="tag">Historia</span>
+            <span class="tag">Sociología</span>
+            <span class="tag">Astronomía</span>
+            <span class="tag neutral">Programación</span>
+            <span class="tag">Lectura</span>
+          </div>
+        </div>
+
+        <div class="interests-block" style="margin-top:1.4rem; border-left-color: var(--accent);">
+          <div class="interests-title" style="color:var(--accent)">Formación</div>
+          <div style="font-size:13.5px; color:#3a4452; line-height:1.7;">
+            <p style="margin-bottom:0.5rem;">
+              <strong style="font-weight:500;">Licenciatura en Administración</strong><br>
+              <span style="color:var(--muted); font-size:12px;">FCE · UNCuyo &nbsp;·&nbsp; 31/36 materias · En curso</span>
+            </p>
+            <p>
+              <strong style="font-weight:500;">Polimodal en Economía y Gestión</strong><br>
+              <span style="color:var(--muted); font-size:12px;">Esc. Martín Zapata · Mendoza</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAYECTORIA -->
+<section id="trayectoria">
+  <div class="section-inner">
+    <div class="section-label">De dónde vengo</div>
+    <h2 class="section-title">Mi trayectoria</h2>
+
+    <div class="trayectoria-intro fade-in">
+      <p>
+        Trabajé en distintas cosas desde los quince años hasta que entré a FUESMEN. Desde un depósito en una casa de deportes, pasando por vendedor, mozo, barman y hasta miembro asesor y codirector de Vínculos Empresa Jr. A partir de mi ingreso a FUESMEN tuve la suerte de que cada etapa dentro de la institución me fue llevando a responsabilidades distintas: pasantía en RRHH y calidad, contaduría, gestión de activos financieros, y finalmente la gerencia de la sede de San Rafael. A continuación les cuento cómo fue ese recorrido.
+      </p>
+    </div>
+
+    <!-- Etapa 1: Vínculos -->
+    <div class="etapa fade-in">
+      <div class="etapa-meta">
+        <div class="etapa-periodo">2017 — 2019</div>
+        <div class="etapa-org">Vínculos<br>Empresa Jr.</div>
+        <div class="etapa-rol">Asesor → Codirector de Proyectos</div>
+        <div class="etapa-dot green" style="margin-top:1.2rem;"></div>
+      </div>
+      <div class="etapa-content prose">
+        <p>
+          Mientras cursaba en la UNCuyo me incorporé a Vínculos, una empresa junior, organización sin fines de lucro que ofrecía consultorías a pymes y emprendedores. Funcionábamos con metodologías ágiles, principalmente Scrum, y el trabajo era concreto: diagnosticar el problema por el cual nos contrataban, armar un equipo de trabajo y armar distintos panoramas de solución para el cliente, dependiendo del caso incluso acompañando hasta la implementación.
+        </p>
+        <p>
+          Entré como asesor de proyectos. Dicha área era responsable de liderar los equipos que iban a llevar a cabo las consultorías. Entre las consultorías que coordiné, una de las más complejas fue un estudio de mercado para evaluar la viabilidad de un espacio cultural a gran escala en Mendoza. Implicó relevamiento, análisis y presentación de resultados a los clientes.
+        </p>
+        <p>
+          Al año siguiente, junto a un compañero, asumimos la codirección del área de proyectos. Me encargaba de la parte operativa: coordinar a los asesores, acompañar el desarrollo de las consultorías y resolver los problemas que iban surgiendo en el camino.
+        </p>
+      </div>
+    </div>
+
+    <!-- Etapa 2: FUESMEN pasantía -->
+    <div class="etapa fade-in">
+      <div class="etapa-meta">
+        <div class="etapa-periodo">2019 — 2020</div>
+        <div class="etapa-org">FUESMEN</div>
+        <div class="etapa-rol">Pasante · RRHH y Calidad</div>
+        <div class="etapa-dot"></div>
+      </div>
+      <div class="etapa-content prose">
+        <p>
+          Me postulé para una pasantía en FUESMEN y quedé en los sectores de Recursos Humanos y Calidad. El primer proyecto grande fue un relevamiento completo de la organización: diseñamos el organigrama institucional —que luego se adoptó como el oficial— y redactamos las descripciones de puestos de toda la institución. Ese trabajo terminó siendo una referencia concreta para los procesos de búsqueda y selección de personal que vinieron después.
+        </p>
+        <p>
+          En Calidad me ocupé de estandarizar el uso del consentimiento informado en los distintos servicios. El proceso existía pero se aplicaba de manera dispar entre áreas; el trabajo fue documentarlo y se uniformó el uso de un modelo de consentimiento.
+        </p>
+      </div>
+    </div>
+
+    <!-- Etapa 3: FUESMEN contaduría -->
+    <div class="etapa fade-in">
+      <div class="etapa-meta">
+        <div class="etapa-periodo">2020 — 2022</div>
+        <div class="etapa-org">FUESMEN</div>
+        <div class="etapa-rol">Administrativo Contable · Gestión Financiera</div>
+        <div class="etapa-dot"></div>
+      </div>
+      <div class="etapa-content prose">
+        <p>
+          Al terminar la pasantía me postulé para una vacante en Contaduría y quedé. Las primeras tareas eran operativas: conciliaciones bancarias, imputación de facturas, registros diarios. Con el tiempo fui asumiendo cosas de mayor complejidad, entre ellas el armado de modelos de costeo.
+        </p>
+        <p>
+          En este asumir cosas de mayor complejidad y responsabilidad, el cambio más relevante dentro de esta etapa fue quedarme a cargo de la gestión de los activos financieros de la institución. Eso implicó trabajar directamente con bancos y brokers, evaluar opciones de inversión y preparar reportes para la dirección. Fue la primera vez que tuve contacto regular con los cargos gerenciales de la institución.
+        </p>
+      </div>
+    </div>
+
+    <!-- Etapa 4: Gerente -->
+    <div class="etapa fade-in">
+      <div class="etapa-meta">
+        <div class="etapa-periodo">Nov 2022 — Hoy</div>
+        <div class="etapa-org">FUESMEN<br>San Rafael</div>
+        <div class="etapa-rol">Gerente de Sucursal</div>
+        <div class="etapa-dot" style="background: linear-gradient(135deg, var(--accent), var(--accent2));"></div>
+      </div>
+      <div class="etapa-content prose">
+        <p>
+          Surgió la posibilidad de hacerse cargo de la sede de San Rafael. Me interesaba porque era gestión integral —no una sola área— así que me postulé, acordamos una etapa de transición y en noviembre de 2022 asumí. Nos mudamos con toda la familia a San Rafael para poder estar.
+        </p>
+        <p>
+          Hoy, bajo mi dirección, la sede cuenta con un equipo de 50 personas y lleva a cabo 30.000 prácticas anuales. El trabajo abarca operaciones, recursos humanos, presupuesto, calidad y mantenimiento. En estos años incorporamos nuevas especialidades —psicología, gastroenterología, mastología—, lo que implicó en cada caso analizar viabilidad, negociar con obras sociales, estimar demanda y coordinar la puesta en marcha.
+        </p>
+        <p>
+          Una de las cosas en las que trabajé desde el principio fue distribuir mejor la toma de decisiones. Cuando llegué, casi todo pasaba por el gerente; fui construyendo de a poco una línea de responsables por servicio con más autonomía en lo operativo. Es un trabajo que todavía está en curso.
+        </p>
+        <p>
+          También desarrollé algunas herramientas propias, otras en vía de desarrollo —gestión de tareas, portal de administración, gestión de pacientes y medicamentos en quimioterapia— usando inteligencia artificial. Eso me llevó a aprender a incorporar la IA a la gestión, algo que sigo haciendo.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- POR QUÉ PM Y CONSULTORÍA -->
+<section id="por-que" class="bg-white">
+  <div class="section-inner">
+    <div class="section-label">Mi dirección</div>
+    <h2 class="section-title">Por qué Project Management<br>y consultoría</h2>
+
+    <div class="porque-grid">
+      <div class="porque-card fade-in">
+        <div class="porque-card-title">Gestión de proyectos</div>
+        <p>
+          Nunca ocupé formalmente un rol de project manager. Pero buena parte de lo que hice en estos años tuvo esa forma: entender un problema, definir cómo abordarlo, coordinar personas y recursos, y hacerle seguimiento hasta que esté resuelto. Lo hice en Vínculos con pymes, y lo seguí haciendo en FUESMEN cada vez que incorporamos un servicio nuevo o encaramos algún cambio de proceso.
+        </p>
+        <p>
+          El curso de Project Management con Pablo Lledó me dio un marco conceptual, pero como digo la mayor parte la aprendí ejecutando.
+        </p>
+      </div>
+      <div class="porque-card green-top fade-in" style="transition-delay:0.1s">
+        <div class="porque-card-title">Consultoría</div>
+        <p>
+          Lo que me atrae de ese tipo de trabajo es poder entender cómo funciona una organización, qué la frena, qué se podría hacer diferente.
+        </p>
+        <p>
+          En Vínculos trabajé con pymes y emprendedores que necesitaban ayuda para ordenarse o tomar decisiones. Me gustó ese formato: poner en juego la escucha activa, entender el contexto y aportar algo concreto. Creo que tengo facilidad para entender cómo funcionan las organizaciones y para sintetizar lo que está pasando, e idear soluciones. Y esta variedad de instituciones y desafíos es lo que más me llama la atención.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ BUSCO -->
+<section id="que-busco">
+  <div class="section-inner">
+    <div class="section-label">Hacia adelante</div>
+    <h2 class="section-title">Qué busco</h2>
+    <div class="busco-content">
+      <div class="busco-prose fade-in">
+        <p>
+          Estoy buscando cambiar de trabajo. En FUESMEN aprendí mucho y tuve la oportunidad de crecer bastante, pero siento que esa etapa se está cerrando. El ritmo de aprendizaje bajó, y algunos objetivos personales que tengo —terminar la carrera, formarme en inglés e inteligencia artificial— son difíciles de encarar mientras siga en un puesto con el cual me cuesta compaginar dichos objetivos.
+        </p>
+        <p>
+          Busco un rol en gestión de proyectos o consultoría. La modalidad remota o híbrida me interesa porque me da más flexibilidad y me permite organizarme mejor. No es lo único que importa, pero sí es una variable que tengo en cuenta.
+        </p>
+        <p>
+          Lo que más valoro en un trabajo nuevo es que haya cosas para aprender y problemas reales para resolver. No busco un puesto de paso ni algo que suene bien en el papel: busco un lugar donde pueda aportar y seguir desarrollándome.
+        </p>
+
+      </div>
+
+      <div class="busco-aside fade-in" style="transition-delay:0.1s">
+        <div class="busco-aside-title">Lo que ofrezco</div>
+        <div class="busco-item"><div class="busco-dot"></div><span>+5 años en gestión operativa y estratégica en el sector salud</span></div>
+        <div class="busco-item"><div class="busco-dot"></div><span>Conducción de equipos de hasta 50 personas</span></div>
+        <div class="busco-item"><div class="busco-dot"></div><span>Gestión de proyectos integrales: desde el diagnóstico hasta la implementación</span></div>
+        <div class="busco-item"><div class="busco-dot"></div><span>Experiencia en consultoría con pymes y emprendedores (Vínculos EJ)</span></div>
+        <div class="busco-item"><div class="busco-dot"></div><span>Capacidad de diagnóstico organizacional y mejora de procesos</span></div>
+        <div class="busco-item"><div class="busco-dot"></div><span>Gestión financiera: presupuesto, costeo e inversiones institucionales</span></div>
+        <div class="busco-item"><div class="busco-dot"></div><span>Uso de IA aplicada a la gestión y desarrollo de herramientas propias</span></div>
+        <div class="busco-item"><div class="busco-dot"></div><span>Disponibilidad para trabajo remoto o híbrido</span></div>
+      </div>
+    </div>
+
+    <div class="aviso-transicion fade-in" style="margin-top:2.5rem;">
+      <div class="aviso-transicion-title">Una aclaración sobre los tiempos</div>
+      <p>
+        La dirección general de FUESMEN sabe que estoy buscando trabajo. Dicho eso, hoy no hay nadie formado para reemplazarme en la gerencia de la sede. Si se concreta un cambio laboral, voy a necesitar un período de transición para dejar a alguien en condiciones de asumir, ya sea antes de incorporarme al nuevo rol o trabajando en paralelo durante un tiempo. Es algo que quiero aclarar desde el principio para que no haya sorpresas.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-inner">
+    <div class="section-label">Hablemos</div>
+    <h2 class="section-title">Contacto</h2>
+    <p class="contacto-lead">
+      Si algo de lo que leíste te genera interés, podés escribirme por cualquiera de estos medios. Estoy disponible para una conversación.
+    </p>
+
+    <div class="contacto-grid">
+      <a href="mailto:eliasmarchevsky@gmail.com" class="contacto-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <div>
+          <span class="contacto-item-label">Email</span>
+          <span class="contacto-item-val">eliasmarchevsky@gmail.com</span>
+        </div>
+      </a>
+      <a href="tel:+542612529362" class="contacto-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+        <div>
+          <span class="contacto-item-label">Teléfono</span>
+          <span class="contacto-item-val">+54 261 252 9362</span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/el%C3%ADas-naum-marchevsky-mansur-a568bb179/" target="_blank" rel="noopener" class="contacto-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+        <div>
+          <span class="contacto-item-label">LinkedIn</span>
+          <span class="contacto-item-val">Ver perfil →</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  Elías Naum Marchevsky Mansur &nbsp;·&nbsp; San Rafael, Mendoza &nbsp;·&nbsp; 2025
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
